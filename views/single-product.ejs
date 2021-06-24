@@ -1,0 +1,55 @@
+<%- include('partials/_header') -%> <%- include('partials/_navigation') -%>
+
+<div class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="<%= product.image %>" class="d-inline" alt="..." />
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <ul class="py-3">
+          <li><strong><%= product.size %></strong></li>
+          <br />
+          <li>
+            <strong><%= product.description %></strong>
+          </li>
+          <br />
+          <li><strong><%= product.moreInfo %></strong></li>
+          <br />
+          <li><strong><%= product.color %></strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/_footer') -%>
