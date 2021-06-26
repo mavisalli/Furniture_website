@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const Category = require("../models/Category");
 const fs = require("fs");
 
 exports.getProducts = async (req, res) => {
@@ -36,7 +37,10 @@ exports.postAddProduct = async (req, res) => {
 };
 
 exports.getAddProduct = async (req, res) => {
-  res.status(200).render("add-product");
+  const categories = await Category.find({});
+  res.status(200).render("add-product", {
+    categories
+  });
 };
 
 exports.getEditProduct = async (req, res) => {
@@ -59,11 +63,29 @@ exports.postEditProduct = async (req, res) => {
 };
 
 exports.deleteProduct = async (req, res) => {
-
   const product = await Product.findOne({ slug: req.params.slug });
-  let deletedImage = __dirname + '/../public' + product.image;
+  let deletedImage = __dirname + "/../public" + product.image;
   fs.unlinkSync(deletedImage);
-  await Product.findOneAndRemove({slug : req.params.slug});
-  res.status(200).redirect('/admin/adminproducts');
+  await Product.findOneAndRemove({ slug: req.params.slug });
+  res.status(200).redirect("/admin/adminproducts");
+};
 
+exports.getAddCategory = async (req, res) => {
+  res.status(200).render("add-category");
+};
+
+exports.postAddCategory = async (req, res) => {
+  await Category.create({
+    name: req.body.name,
+  });
+
+  res.status(201).redirect("/admin/categories");
+};
+
+exports.getAllCategories = async (req, res) => {
+  const categories = await Category.find({});
+
+  res.status(200).render("categories", {
+    categories,
+  });
 };

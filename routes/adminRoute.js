@@ -12,4 +12,8 @@ router.route("/edit-product/:slug").put(adminController.postEditProduct);
 router.route("/edit-product/:slug").get(adminController.getEditProduct);
 router.route("/adminproducts/:slug").delete(adminController.deleteProduct);
 
+router.route("/add-category").get(adminController.getAddCategory);
+router.route("/add-category").post(adminController.postAddCategory);
+router.route("/categories").get(adminController.getAllCategories);
+
 module.exports = router;

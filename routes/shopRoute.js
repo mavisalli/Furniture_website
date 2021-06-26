@@ -9,4 +9,5 @@ router.route("/").get(shopController.getIndexPage);
 router.route("/products").get(shopController.getAllProducts);
 router.route("/products/:slug").get(shopController.getProduct);
 
+
 module.exports = router;

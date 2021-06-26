@@ -29,6 +29,14 @@ const ProductSchema = new Schema ({
     color: {
         type: String
     },
+    category: {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Category'
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
     slug: {
         type: String,
         unique: true

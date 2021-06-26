@@ -6,12 +6,13 @@
 <div class="container pt-100">
   <div class="row">
     <div class="col-lg-3">
+      <% for (let i=0; i < categories.length; i++) { %>
       <div class="list-group">
-        <a href="" class="list-group-item">Category 1</a>
-        <a href="" class="list-group-item">Category 2</a>
-        <a href="" class="list-group-item">Category 3</a>
+        <a href="/products?categories=<%= categories[i].slug %>" class="list-group-item"><%= categories[i].name %></a>
       </div>
+      <% } %>
     </div>
+
     <div class="col-lg-9">
       <%- include('partials/_orange-slider') -%>
      

@@ -1,0 +1,31 @@
+<%- include('partials/_header') -%>
+
+<%- include('partials/_navigation') -%>
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Kategori İsmi</th>
+        <th style="width:133px;" scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let i=0; i < categories.length; i++) { %>
+      <tr>
+        <td><%= categories[i].name %></td>
+      
+        <td>
+            <a class="btn btn-primary btn-sm" href="#">Düzenle</a>
+            <a class="btn btn-danger btn-sm" href="#">Sil</a>
+        </td>
+      </tr>
+      <% } %>
+   
+
+    </tbody>
+  </table>
+
+
+  <%- include('partials/_footer') -%>
