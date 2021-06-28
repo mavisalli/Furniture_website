@@ -5,7 +5,7 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Nilay Mobilya</a>
+        <a class="navbar-brand" href="/">Nilay Mobilya</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -41,6 +41,9 @@
             <li class="nav-item">
               <a class="nav-link" href="sss.html">SSS</a>
             </li>
+
+            <% if(adminIN) { %>
+
             <li class="nav-item">
               <a class="nav-link" href="/admin/add-product">Add Product</a>
             </li>
@@ -53,7 +56,12 @@
             <li class="nav-item">
               <a class="nav-link" href="/admin/categories">Categories</a>
             </li>
-          </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="/users/logout">Logout</a>
+            </li>
+
+          <% } %>
+           </ul>
         </div>
       </div>
     </nav>

@@ -2,8 +2,15 @@ const Product = require("../models/Product");
 const Category = require("../models/Category");
 
 exports.getIndexPage = (req, res) => {
+  console.log(req.session.adminID);
   res.status(200).render("index");
 };
+
+
+exports.getLoginPage = (req, res) => {
+  res.status(200).render('login');
+};
+
 
 
 exports.getAllProducts = async (req, res) => {
@@ -27,7 +34,7 @@ exports.getAllProducts = async (req, res) => {
 
     res.status(200).render("products", {
       products,
-      categories,
+      categories
     });
   } catch (error) {
     res.status(400).json({
@@ -53,4 +60,8 @@ exports.getProduct = async (req, res) => {
     });
   }
 };
+
+
+
+
 

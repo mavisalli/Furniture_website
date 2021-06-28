@@ -16,4 +16,6 @@ router.route("/add-category").get(adminController.getAddCategory);
 router.route("/add-category").post(adminController.postAddCategory);
 router.route("/categories").get(adminController.getAllCategories);
 
+
+
 module.exports = router;
