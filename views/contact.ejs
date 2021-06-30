@@ -1,0 +1,46 @@
+  
+<%- include('partials/_header') -%>
+
+<%- include('partials/_navigation') -%>
+
+<%- include('partials/_orange-slider') -%>
+
+<div class="row mt-3">
+    <div class="offset-1 col-xl-10 col-md-10 col-sm-10">
+
+
+        <% if(flashMessages) { %>
+            <% if(flashMessages.success) { %>
+                <div class="alert alert-success">
+                    <%= flashMessages.success %>
+                </div>
+            <% } else if (flashMessages.error) { %>
+                <div class="alert alert-danger">
+                    <%= flashMessages.error %>
+                </div>
+            <% } %>
+        <% } %>
+
+
+        <form method="POST" action="/contacts">
+            <div class="form-group">
+                <label for="name">Ad Soyad</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="adınızı ve soyadınızı giriniz">
+            </div>
+
+            <div class="form-group">
+            <label for="email">E-Posta Adresi</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+            </div>
+
+        
+            <div class="form-group">
+            <label for="message">Mesaj</label>
+            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+            </div>
+            <button class="btn btn-primary btn-xl unabled" id="submitButton" type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+<%- include('partials/_footer') -%>

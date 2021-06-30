@@ -27,6 +27,7 @@
     "express-session": "^1.17.2",
     "method-override": "^3.0.0",
     "mongoose": "^5.12.14",
+    "nodemailer": "^6.6.2",
     "slugify": "^1.5.3"
   },
   "devDependencies": {

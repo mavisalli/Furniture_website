@@ -27,37 +27,43 @@
               <a class="nav-link" href="/products">Ürünlerimiz <span class="sr-only">(current)</span></a>
             </li>
          
+            
+            <% if(!adminIN) { %>
+
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="hakkimizda.html"
+              <a class="nav-link" aria-current="page" href="/about-us"
                 >Hakkımızda</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="magaza.html">Mağazalarımız</a>
+              <a class="nav-link" href="/store">Mağazalarımız</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="iletisim.html">İletişim</a>
+              <a class="nav-link" href="/contact">İletişim</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="sss.html">SSS</a>
             </li>
+            
+          <% } %>
+
 
             <% if(adminIN) { %>
 
             <li class="nav-item">
-              <a class="nav-link" href="/admin/add-product">Add Product</a>
+              <a class="nav-link" href="/admin/add-product">Ürün Ekle</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/add-category">Add Category</a>
+              <a class="nav-link" href="/admin/add-category">Kategori Ekle</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/admin/adminproducts">Admin Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/categories">Categories</a>
+              <a class="nav-link" href="/admin/categories">Kategoriler</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/users/logout">Logout</a>
+              <a class="nav-link" href="/users/logout">Çıkış</a>
             </li>
 
           <% } %>

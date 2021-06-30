@@ -4,9 +4,12 @@
 }
 
 .navbar {
-    background-color:whitesmoke;
     color: black;
-    border-bottom: 1px solid black;
+}
+
+.nav-item {
+    position: relative;
+    left: 370px;
 }
 
 #deneme{

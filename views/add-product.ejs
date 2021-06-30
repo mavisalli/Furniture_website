@@ -5,27 +5,28 @@
 
 
 
-
-<div class="col-lg-12">
+<div class="col-lg-12 mt-4">
 
     <form method="POST" action="/admin/add-product" encType="multipart/form-data">
 
         <div class="form-group row">
-            <label for="productName" class="col-sm-2 col-form-label">Name</label>
+            <label for="productName" class="col-sm-2 col-form-label">Ürün İsmi</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="productName" name="name">
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="image" class="col-sm-2 col-form-label">Image</label>
-            <input type="file" id="image" name="image" class="form-control-file rounded-0">
-          </div>
+            <label for="image" class="col-sm-2 col-form-label">Görsel</label>
+            <div class="col-sm-10">
+                <input type="file" id="image" name="image" class="form-control-file rounded-0">
+            </div>    
+        </div>
 
 
 
         <div class="form-group row">
-            <label for="size" class="col-sm-2 col-form-label">Size</label>
+            <label for="size" class="col-sm-2 col-form-label">Ölçüler</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="size" name="size">
             </div>
@@ -33,12 +34,14 @@
 
 
         <div class="form-group row">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            <label for="description" class="col-sm-2 col-form-label">Açıklama</label>
+            <div class="col-sm-10">
+                <textarea class="form-control " id="description" name="description" rows="4"></textarea>
+            </div>
         </div>
 
         <div class="form-group row">
-            <label for="category" class="col-sm-2 col-form-label">Category</label>
+            <label for="category" class="col-sm-2 col-form-label">Kategori</label>
             <div class="col-sm-10">
                 <select class="form-control" id="category"  name="category">
                     <option value="-1">Kategori seçiniz</option>
@@ -52,14 +55,14 @@
     
 
         <div class="form-group row">
-            <label for="moreInfo" class="col-sm-2 col-form-label">More Info</label>
+            <label for="moreInfo" class="col-sm-2 col-form-label">Detay Bilgi</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="moreInfo" name="moreInfo">
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="color" class="col-sm-2 col-form-label">Color</label>
+            <label for="color" class="col-sm-2 col-form-label">Renk</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="color" name="color">
             </div>
@@ -69,7 +72,7 @@
 
         <div class="form-group row">
             <div class="col-sm-10 offset-sm-2">
-                <input type="submit" class="btn btn-primary" value="Save Product">
+                <input type="submit" class="btn btn-primary" value="Ürünü Kaydet">
             </div>
         </div>
 
@@ -77,6 +80,7 @@
 
     </form>
 </div>
+
 
 
 <%- include('partials/_footer') -%>

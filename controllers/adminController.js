@@ -44,19 +44,26 @@ exports.getAddProduct = async (req, res) => {
   });
 };
 
+
+
 exports.getEditProduct = async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
+  const categories = await Category.find({});
 
   res.status(201).render("edit-product", {
     product,
+    categories
   });
 };
+
+
 
 exports.postEditProduct = async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
   product.name = req.body.name;
   product.size = req.body.size;
   product.description = req.body.description;
+  product.category = req.body.category;
   product.moreInfo = req.body.moreInfo;
   product.color = req.body.color;
   await product.save();
