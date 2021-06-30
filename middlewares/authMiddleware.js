@@ -8,3 +8,5 @@ module.exports = (req, res, next)=> {
     })
 
 }
+
+//module.exports seklinde anonim fonksiyon olusturmamızın sebebi istedigimiz yerde bu midlleware'leri kullanabilmektir.

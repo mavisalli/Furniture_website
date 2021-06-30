@@ -32,7 +32,8 @@ exports.postAddProduct = async (req, res) => {
       ...req.body,
       image: "/uploads/" + uploadeImage.name,
     });
-    res.status(201).redirect("/products");
+    req.flash("success", "ürün sisteme eklendi");
+    res.status(201).redirect("/admin/adminproducts");
   });
 };
 
@@ -59,6 +60,7 @@ exports.postEditProduct = async (req, res) => {
   product.moreInfo = req.body.moreInfo;
   product.color = req.body.color;
   await product.save();
+  req.flash("success", `${product.name} güncellendi`);
   res.status(200).redirect(`/admin/adminproducts`);
 };
 
@@ -67,6 +69,7 @@ exports.deleteProduct = async (req, res) => {
   let deletedImage = __dirname + "/../public" + product.image;
   fs.unlinkSync(deletedImage);
   await Product.findOneAndRemove({ slug: req.params.slug });
+  req.flash("success", `${product.name} silindi !`);
   res.status(200).redirect("/admin/adminproducts");
 };
 

@@ -2,7 +2,14 @@
 
 <%- include('partials/_navigation') -%>
 
+<% if (flashMessages) { %>
+  <% if (flashMessages.success) { %>
+    <div class="alert alert-success">
+      <%= flashMessages.success %>
+    </div>
+  <% } %>
 
+<% } %>
 
 <table class="table">
     <thead>

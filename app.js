@@ -5,6 +5,7 @@ const fileUpload = require("express-fileupload");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
+const flash = require('connect-flash');
 
 const shopRoute = require("./routes/shopRoute");
 const adminRoute = require("./routes/adminRoute");
@@ -49,6 +50,11 @@ app.use(
     store: MongoStore.create({ mongoUrl: 'mongodb://localhost/nilay_mobilya_mongodb-db' })
   })
 );
+app.use(flash());
+app.use((req,res,next)=> {
+  res.locals.flashMessages = req.flash(); 
+  next();
+})
 
 //ROUTES
 app.use("*", (req, res, next) => {
