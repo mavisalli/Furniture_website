@@ -59,7 +59,23 @@ exports.getEditProduct = async (req, res) => {
 
 
 exports.postEditProduct = async (req, res) => {
+
   const product = await Product.findOne({ slug: req.params.slug });
+  let oldImage = product.image.slice(9);
+
+  if(req.files){
+    const newImage = req.files.image;
+    let delImage = __dirname + '/../public/uploads/' + oldImage;
+    fs.unlinkSync(delImage);
+    let uploadPath = __dirname + '/../public/uploads/' + newImage.name;
+    newImage.mv(uploadPath);
+    product.image = '/uploads/' + newImage.name;
+  } else {
+    product.image = '/uploads/' + oldImage.name;
+  }
+  
+
+
   product.name = req.body.name;
   product.size = req.body.size;
   product.description = req.body.description;

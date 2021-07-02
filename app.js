@@ -7,11 +7,14 @@ const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 
+
 const shopRoute = require("./routes/shopRoute");
 const adminRoute = require("./routes/adminRoute");
 const authRoute = require("./routes/authRoute");
 
 const app = express();
+
+
 
 // Connect DB
 mongoose
