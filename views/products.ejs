@@ -1,30 +1,41 @@
-  
-<%- include('partials/_header') -%>
-
-<%- include('partials/_navigation') -%>
+<%- include('partials/_header') -%> <%- include('partials/_navigation') -%>
 
 <div class="container pt-100">
   <div class="row">
     <div class="col-lg-3">
       <% for (let i=0; i < categories.length; i++) { %>
       <div class="list-group">
-        <a href="/products?categories=<%= categories[i].slug %>" class="list-group-item"><%= categories[i].name %></a>
+        <a
+          href="/products?categories=<%= categories[i].slug %>"
+          class="list-group-item"
+          ><%= categories[i].name %></a
+        >
       </div>
       <% } %>
     </div>
 
     <div class="col-lg-9">
       <%- include('partials/_orange-slider') -%>
-     
+
       <div class="row">
         <% for (let i=0; i < products.length; i++) { %>
         <div class="col-md-4">
           <div class="card my-3">
-            <img src="<%= products[i].image %>" alt="" class="card-img-top" />
+            <img
+              src="<%= products[i].images[0] %>"
+              alt=""
+              class="card-img-top"
+            />
             <div class="card-body">
-              <a href="/products/<%= products[i].slug %>"><%= products[i].name %></a>  
-            </div> 
-            <a class="btn btn-outline-success btn-sm" href="/products/<%= products[i].slug %>">Detay</a>
+              <a href="/products/<%= products[i].slug %>"
+                ><%= products[i].name %></a
+              >
+            </div>
+            <a
+              class="btn btn-outline-success btn-sm"
+              href="/products/<%= products[i].slug %>"
+              >Detay</a
+            >
           </div>
         </div>
         <% } %>
