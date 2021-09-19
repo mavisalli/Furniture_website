@@ -18,48 +18,95 @@ exports.getProducts = async (req, res) => {
 };
 
 exports.postAddProduct = async (req, res) => {
+  const product = new Product({
+    name: req.body.name,
+    size: req.body.size,
+    description: req.body.description,
+    category: req.body.category,
+    moreInfo: req.body.moreInfo,
+    color: req.body.color,
+  });
+
   const uploadDir = "public/uploads";
 
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir);
-  }
+  if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 
-  let uploadeImage = req.files.image;
-  let uploadPath = __dirname + "/../public/uploads/" + uploadeImage.name;
+  const images = [];
 
-  uploadeImage.mv(uploadPath, async () => {
-    await Product.create({
-      ...req.body,
-      image: "/uploads/" + uploadeImage.name,
+  req.files.image = !req.files.image.length
+    ? [req.files.image]
+    : req.files.image;
+  for (let i = 0; i < req.files.image.length; i++) {
+    const image = req.files.image[i];
+    let uploadPath = __dirname + "/../public/uploads/" + image.name;
+
+    await new Promise((resolve) => {
+      image.mv(uploadPath, (err) => {
+        if (err) throw err;
+        console.log(image);
+        if (!err) images.push(`uploads/${image.name}`);
+        resolve(true);
+      });
     });
-    req.flash("success", "ürün sisteme eklendi");
-    res.status(201).redirect("/admin/adminproducts");
-  });
+  }
+  product.images = images;
+  await product.save();
+
+  req.flash("success", "ürün sisteme eklendi");
+  res.status(201).redirect("/admin/adminproducts");
 };
 
 exports.getAddProduct = async (req, res) => {
   const categories = await Category.find({});
   res.status(200).render("add-product", {
-    categories
+    categories,
   });
 };
-
-
 
 exports.getEditProduct = async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
-  const categories = await Category.find({});
+
+  const categories = await Category.find({}).lean();
 
   res.status(201).render("edit-product", {
     product,
-    categories
+    categories,
   });
 };
 
-
-
 exports.postEditProduct = async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
+
+  let editedImages = JSON.parse(req.body.editedImages) || [];
+
+  if (editedImages.length) editedImages = editedImages.map((i) => i.slice(1));
+
+  const uploadDir = "public/uploads";
+
+  if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
+
+  const images = [];
+
+  if (req.files) {
+    req.files.image = !req.files.image.length
+      ? [req.files.image]
+      : req.files.image;
+    for (let i = 0; i < req.files.image.length; i++) {
+      const image = req.files.image[i];
+      let uploadPath = __dirname + "/../public/uploads/" + image.name;
+
+      await new Promise((resolve) => {
+        image.mv(uploadPath, (err) => {
+          if (err) throw err;
+          console.log(image);
+          if (!err) images.push(`uploads/${image.name}`);
+          resolve(true);
+        });
+      });
+    }
+  }
+  product.images = [...editedImages, ...images];
+
   product.name = req.body.name;
   product.size = req.body.size;
   product.description = req.body.description;
@@ -73,9 +120,14 @@ exports.postEditProduct = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
-  let deletedImage = __dirname + "/../public" + product.image;
-  fs.unlinkSync(deletedImage);
-  await Product.findOneAndRemove({ slug: req.params.slug });
+  const images = product.images;
+  for (let i = 0; i < images.length; i++) {
+    const image = images[i];
+    let deletedImage = __dirname + "/../public/" + image;
+    if (fs.existsSync(deletedImage)) fs.unlinkSync(deletedImage);
+  }
+
+  await product.delete();
   req.flash("success", `${product.name} silindi !`);
   res.status(200).redirect("/admin/adminproducts");
 };
