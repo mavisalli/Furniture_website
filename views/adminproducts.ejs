@@ -1,42 +1,39 @@
-<%- include('partials/_header') -%>
-
-<%- include('partials/_navigation') -%>
-
-<% if (flashMessages) { %>
-  <% if (flashMessages.success) { %>
-    <div class="alert alert-success">
-      <%= flashMessages.success %>
-    </div>
-  <% } %>
-
-<% } %>
+<%- include('partials/_header') -%> <%- include('partials/_navigation') -%> <%
+if (flashMessages) { %> <% if (flashMessages.success) { %>
+<div class="alert alert-success"><%= flashMessages.success %></div>
+<% } %> <% } %>
 
 <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Görsel</th>
-        <th scope="col">Ürün İsmi</th>
-        <th style="width:133px;" scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for (let i=0; i < products.length; i++) { %>
-      <tr>
-        <td>
-          <img style="width: 100px;" src="<%= products[i].image %>" alt="">
-        </td>
-        <td><%= products[i].name %></td>
-      
-        <td>
-            <a class="btn btn-primary btn-sm" href="/admin/edit-product/<%= products[i].slug %>">Düzenle</a>
-            <a class="btn btn-danger btn-sm" href="/admin/adminproducts/<%= products[i].slug %>?_method=DELETE">Sil</a>
-        </td>
-      </tr>
-      <% } %>
-   
+  <thead>
+    <tr>
+      <th scope="col">Görsel</th>
+      <th scope="col">Ürün İsmi</th>
+      <th style="width: 133px" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (let i=0; i < products.length; i++) { %>
+    <tr>
+      <td>
+        <img style="width: 100px" src="/<%= products[i].images[0] %>" alt="" />
+      </td>
+      <td><%= products[i].name %></td>
 
-    </tbody>
-  </table>
+      <td>
+        <a
+          class="btn btn-primary btn-sm"
+          href="/admin/edit-product/<%= products[i].slug %>"
+          >Düzenle</a
+        >
+        <a
+          class="btn btn-danger btn-sm"
+          href="/admin/adminproducts/<%= products[i].slug %>?_method=DELETE"
+          >Sil</a
+        >
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
 
-
-  <%- include('partials/_footer') -%>
+<%- include('partials/_footer') -%>
