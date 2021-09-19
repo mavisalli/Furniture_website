@@ -8,11 +8,14 @@ const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const fileUpload = require("express-fileupload");
 
+
 const shopRoute = require("./routes/shopRoute");
 const adminRoute = require("./routes/adminRoute");
 const authRoute = require("./routes/authRoute");
 
 const app = express();
+
+
 
 // Connect DB
 mongoose
