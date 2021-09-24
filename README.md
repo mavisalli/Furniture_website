@@ -14,5 +14,10 @@
  :ballot_box_with_check: Database: MongoDB for NoSQL Database
 
  :ballot_box_with_check: Frameworks: Express, Mongoose, Bootstrap, Jquery
+ 
+  :zap: :zap: Admin template :
+  
+  ![furniture_admin_panel](https://user-images.githubusercontent.com/72470885/133937526-6a7efe46-506c-40bf-aed1-b9a88868f83d.gif)
+
 
 
